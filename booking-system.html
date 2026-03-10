@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pearl's Travel Getaway Hub</title>
+  <link rel="stylesheet" href="booking-system.css" />
+</head>
+<body>
+  <header>
+    <h1>🌍 Pearl's Travel Getaway Hub</h1>
+    <p class="subtitle">Book your dream vacation now!</p>
+  </header>
+
+  <main>
+    <!-- Featured Spots Section -->
+    <section class="spots-section">
+      <h2>Featured Mindanao Tourist Destinations</h2>
+      <div class="spots-container">
+        
+        <div class="spot-card" onclick="selectSpot('Durano View Camp Site & Mountain Resort', 50)">
+          <div class="spot-image durano-bg"></div>
+          <h3>Durano View Camp Site & Mountain Resort</h3>
+          <p class="location">📍 Durano, Kapatagan, Lanao del Norte</p>
+          <p class="description">Beautiful mountain resort with scenic views, camping facilities, and nature activities in Mindanao</p>
+          <p class="price">₱50 per person/day</p>
+          <button class="select-btn">Book Now</button>
+        </div>
+
+        <div class="spot-card" onclick="selectSpot('Cathedral Falls', 30)">
+          <div class="spot-image cathedral-bg"></div>
+          <h3>Cathedral Falls</h3>
+          <p class="location">📍 Waterfalls, Kapatagan, Lanao del Norte</p>
+          <p class="description">Majestic waterfall surrounded by lush vegetation and natural rock formations perfect for swimming and photography</p>
+          <p class="price">₱30 per person/day</p>
+          <button class="select-btn">Book Now</button>
+        </div>
+
+        <div class="spot-card" onclick="selectSpot('Sta. Cruz Falls', 20)">
+          <div class="spot-image stacruz-bg"></div>
+          <h3>Sta. Cruz Falls</h3>
+          <p class="location">📍 Sta. Cruz, Kapatagan, Lanao del Norte</p>
+          <p class="description">Stunning waterfall destination with clear pools and pristine natural surroundings ideal for leisure and adventure</p>
+          <p class="price">₱20 per person/day</p>
+          <button class="select-btn">Book Now</button>
+        </div>
+
+        <div class="spot-card" onclick="selectSpot('Jardin de Rachma', 50)">
+          <div class="spot-image jardin-bg"></div>
+          <h3>Jardin de Rachma</h3>
+          <p class="location">📍 Magsaysay, Lanao del Norte</p>
+          <p class="description">Enchanting garden destination with beautiful landscaping, perfect for relaxation, weddings, and family gatherings</p>
+          <p class="price">₱50 per person/day</p>
+          <button class="select-btn">Book Now</button>
+        </div>
+
+        <div class="spot-card" onclick="selectSpot('Bakilid Leisure & Events Place', 50)">
+          <div class="spot-image bakilid-bg"></div>
+          <h3>Bakilid Leisure & Events Place</h3>
+          <p class="location">📍 Pagadian City, Zamboanga del Sur</p>
+          <p class="description">Premier leisure destination with event facilities, scenic views, and recreational amenities for memorable celebrations</p>
+          <p class="price">₱50 per person/day</p>
+          <button class="select-btn">Book Now</button>
+        </div>
+
+        <div class="spot-card" onclick="selectSpot('My Father\'s Resort', 50)">
+          <div class="spot-image myfather-bg"></div>
+          <h3>My Father's Resort</h3>
+          <p class="location">📍 Pagadian City, Zamboanga del Sur</p>
+          <p class="description">Relaxing resort destination offering comfort, natural beauty, and perfect getaway for families and friends</p>
+          <p class="price">₱50 per person/day</p>
+          <button class="select-btn">Book Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section">
+      <h2>Complete Your Booking</h2>
+      <form id="bookingForm" class="booking-form">
+        <div class="form-group">
+          <label for="spot">Selected Destination:</label>
+          <select id="spot" required onchange="selectDestination()">
+            <option value="">-- Choose a destination --</option>
+            <option value="Durano View Camp Site & Mountain Resort" data-price="45">Durano View Camp Site & Mountain Resort - ₱45/day</option>
+            <option value="Cathedral Falls" data-price="30">Cathedral Falls - ₱30/day</option>
+            <option value="Sta. Cruz Falls" data-price="20">Sta. Cruz Falls - ₱20/day</option>
+            <option value="Jardin de Rachma" data-price="50">Jardin de Rachma - ₱50/day</option>
+            <option value="Bakilid Leisure & Events Place" data-price="50">Bakilid Leisure & Events Place - ₱50/day</option>
+            <option value="My Father's Resort" data-price="50">My Father's Resort - ₱50/day</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number" required />
+          </div>
+          <div class="form-group">
+            <label for="date">Travel Date:</label>
+            <input type="date" id="date" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" min="1" max="20" value="1" onchange="calculatePrice()" required />
+          </div>
+          <div class="form-group">
+            <label for="duration">Duration (days):</label>
+            <input type="number" id="duration" min="1" max="30" value="1" onchange="calculatePrice()" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Special Requests:</label>
+          <textarea id="notes" placeholder="Any special requests or dietary requirements..." rows="4"></textarea>
+        </div>
+
+        <div class="form-group price-display">
+          <p>Price per person/day: <span id="pricePerDay">₱0</span></p>
+          <p>Total Price: <span id="totalPrice">₱0</span></p>
+        </div>
+
+        <button type="submit" class="submit-btn">Confirm Booking</button>
+      </form>
+    </section>
+
+    <!-- Image Gallery Modal -->
+    <div id="galleryModal" class="modal">
+      <div class="gallery-content">
+        <span class="close-gallery">&times;</span>
+        <h2 id="galleryTitle">Gallery</h2>
+        <div class="gallery-container">
+          <button class="gallery-prev" onclick="changeGalleryImage(-1)">❮</button>
+          <img id="galleryImage" src="" alt="Gallery Image" class="gallery-image" />
+          <button class="gallery-next" onclick="changeGalleryImage(1)">❯</button>
+        </div>
+        <div class="gallery-counter">
+          <span id="imageCounter">1 / 4</span>
+        </div>
+        <div class="gallery-dots">
+          <span class="dot" onclick="goToGalleryImage(0)"></span>
+          <span class="dot" onclick="goToGalleryImage(1)"></span>
+          <span class="dot" onclick="goToGalleryImage(2)"></span>
+          <span class="dot" onclick="goToGalleryImage(3)"></span>
+        </div>
+        <button class="book-now-btn" onclick="bookCurrentSpot()">Book Now</button>
+      </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>✅ Booking Confirmed!</h2>
+        <div id="confirmationDetails" class="confirmation-details"></div>
+        <p class="confirmation-message">Thank you for booking with us! Your reservation has been recorded. We look forward to welcoming you!</p>
+        <button class="close-modal-btn">Close</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Pearl's Travel Getaway Hub | All Rights Reserved</p>
+  </footer>
+
+  <script src="booking-system.js"></script>
+</body>
+</html>
